@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    text-align: center;
+    align-items: center;
+    background-image: url("../img/portada.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header{
+    position:absolute; 
+    top: 20px;
+    left: 30px;
+    width: 200px;
+}
+.menu:hover{
+    color: red;
+}
+.link{
+    list-style:none;
+    background-color: rgb(104, 85, 85);
+    border-radius: 20%;
+    padding: 12px;
+    font-size: 20px;
+    color: white;
+    margin-top: 8px;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+ul a :hover{
+    background-color: rgb(223, 60, 60);
+}
+
+#message{
+    color: white;
+    background-color: black;
+    padding: 50px 0 40px 0;
+    font-size: 22px;
+}
+
+#content{
+    padding-bottom: 300px;
+    background: linear-gradient(black, rgb(252, 252, 252, .0));
+    color: white;
+    font-size: 20px;
+}
+
+select{
+    font-size: 16px;
+}
+#title{
+    font-size: 18px;
+}
+
+.spacing{
+    padding: 14px;
+}
+.button{
+    margin-top: 10px;
+    padding: 5px 10px 5px 10px;
+    font-size: 18px;
+}
