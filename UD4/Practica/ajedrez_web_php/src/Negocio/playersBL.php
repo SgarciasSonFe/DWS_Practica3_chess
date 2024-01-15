@@ -42,6 +42,15 @@ class PlayersBL
         return $playersList;
     }
 
+    function verify($name, $passw)
+    {
+        $namesDAL = new PlayersDAL();
+        $res = $namesDAL->verify($name,$passw);
+        
+        return $res;
+        
+    }
+
 }
 
 ?>

@@ -50,6 +50,13 @@
     ?>
 </head>
 <body>
+    <?php
+        session_start(); // reanudamos la sesión
+        if (!isset($_SESSION['name']) || $_SESSION['profile'] != "premium")
+        {
+            header("Location: login.php");
+        }
+    ?>
     <header>
         <a href="index.php" class="menu"><h1>Menú principal</h1></a>
         <nav>
@@ -57,6 +64,8 @@
                 <a href="new_gameView.php">
                     <li class="link"> Nueva partida </li>
                 </a>
+                <br>
+                <a id="logout" href="logout.php"> Cerrar sesión </a>
             </ul>
         </nav>
     </header>

@@ -17,6 +17,9 @@ header{
     left: 30px;
     width: 200px;
 }
+.menu{
+    color: white;
+}
 .menu:hover{
     color: red;
 }
@@ -31,38 +34,55 @@ header{
 }
 a{
     text-decoration: none;
-    color: white;
 }
 ul a :hover{
     background-color: rgb(223, 60, 60);
+}
+#logout{
+    color: white;
+    font-size: 18px;
+}
+#logout:hover{
+    text-decoration: underline;
+    color: red;
 }
 
 #message{
     color: white;
     background-color: black;
-    padding: 50px 0 40px 0;
+    padding: 50px 0 30px 0;
     font-size: 22px;
 }
 
 #content{
-    padding-bottom: 300px;
+    padding: 30px 0 50px 0;
     background: linear-gradient(black, rgb(252, 252, 252, .0));
-    color: white;
-    font-size: 20px;
+}
+table{
+    margin: 0 auto;
+    border: solid white 5px;
+    border-collapse:collapse; 
+}
+#index{
+    font-size: 22px;
+    font-weight: bold;
 }
 
-select{
-    font-size: 16px;
+tr:nth-child(odd)>td {
+    background-color: rgb(151, 146, 137);
 }
-#title{
-    font-size: 18px;
+tr:nth-child(even)>td {
+    background-color: wheat;
 }
 
-.spacing{
-    padding: 14px;
+td{
+    border: solid white 2px;
+    padding: 5px;
 }
-.button{
-    margin-top: 10px;
-    padding: 5px 10px 5px 10px;
-    font-size: 18px;
+
+.title a{
+    color: black;
+}
+.title a:hover{
+    color: blue;
 }

@@ -8,6 +8,13 @@
 </head>
 
 <body>
+    <?php
+        session_start(); // reanudamos la sesión
+        if (!isset($_SESSION['name']))
+        {
+            header("Location: login.php");
+        }
+    ?>
     <header>
         <a href="index.php" class="chess_game"><h1>Menú principal</h1></a>
         <nav>
@@ -15,9 +22,17 @@
                 <a href="new_gameView.php">
                     <li class="link"> Nueva partida </li>
                 </a>
-                <a href="gameListView.php">
-                    <li class="link"> Lista de partidas </li>
-                </a>
+                <?php
+                if($_SESSION['profile'] == "premium")
+                {
+                    echo "<a href='gameListView.php'>
+                            <li class='link'> Lista de partidas </li>
+                        </a>";
+                }
+                ?>
+                
+                <br>
+                <a id="logout" href="logout.php"> Cerrar sesión </a>
             </ul>
         </nav>
     </header>

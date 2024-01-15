@@ -32,7 +32,7 @@ a{
     text-decoration: none;
     margin: 30px;
 }
-a :hover{
+.menu :hover{
     background-color: rgb(223, 60, 60);
 }
 
@@ -42,4 +42,12 @@ a :hover{
     padding: 15px;
     font-size: 28px;
     display: inline-block;
+}
+
+#logout{
+    font-size: 20px;
+}
+#logout:hover{
+    text-decoration: underline;
+    color: red;
 }

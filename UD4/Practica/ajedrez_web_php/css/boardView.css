@@ -35,6 +35,13 @@ a{
 ul a :hover{
     background-color: rgb(223, 60, 60);
 }
+#logout{
+    font-size: 18px;
+}
+#logout:hover{
+    text-decoration: underline;
+    color: red;
+}
 
 #info{
     text-align: center;
