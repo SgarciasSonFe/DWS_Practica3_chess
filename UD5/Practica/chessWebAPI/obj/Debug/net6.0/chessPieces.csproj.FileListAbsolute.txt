@@ -1,0 +1,15 @@
+/home/carlos/Escritorio/chessPieces/bin/Debug/net6.0/chessPieces
+/home/carlos/Escritorio/chessPieces/bin/Debug/net6.0/chessPieces.deps.json
+/home/carlos/Escritorio/chessPieces/bin/Debug/net6.0/chessPieces.runtimeconfig.json
+/home/carlos/Escritorio/chessPieces/bin/Debug/net6.0/chessPieces.dll
+/home/carlos/Escritorio/chessPieces/bin/Debug/net6.0/ref/chessPieces.dll
+/home/carlos/Escritorio/chessPieces/bin/Debug/net6.0/chessPieces.pdb
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.csproj.AssemblyReference.cache
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.GeneratedMSBuildEditorConfig.editorconfig
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.AssemblyInfoInputs.cache
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.AssemblyInfo.cs
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.csproj.CoreCompileInputs.cache
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.dll
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/ref/chessPieces.dll
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.pdb
+/home/carlos/Escritorio/chessPieces/obj/Debug/net6.0/chessPieces.genruntimeconfig.cache

@@ -10,5 +10,10 @@ namespace ChessAPI.Model
         {
             return PieceValues.QueenValue;
         }
+
+        public override MovementType ValidateSpecificRulesForMovement(Movement movement, Piece[,] board)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

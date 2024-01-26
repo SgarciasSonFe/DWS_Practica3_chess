@@ -66,7 +66,7 @@ namespace ChessAPI.Model
             }
         } 
 
-        //notTODO Cambiar este método que devuelva el objeto requerido en la práctica 
+        //Método que devuelve el objeto requerido en la práctica 
         public BoardScore GetScore()
         {
             int scoreBlack = 0;

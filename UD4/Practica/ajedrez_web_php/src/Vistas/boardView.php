@@ -67,36 +67,44 @@
                 switch ($btn) {
                     case 1:
                         $matchStatus = 0;
+                        scoreMarker($match[$matchStatus]);
                         drawChessGame($match[$matchStatus]);
                         break;
                     case 2:
                         if(($matchStatus - 1) < 0)
                         {
+                            scoreMarker($match[$matchStatus]);
                             drawChessGame($match[$matchStatus]);
                         } else {
                             $matchStatus--;
+                            scoreMarker($match[$matchStatus]);
                             drawChessGame($match[$matchStatus]);
                         }
                         break;
                     case 3:
                         if(($matchStatus + 1) > (count($match) -1))
                         {
+                            scoreMarker($match[$matchStatus]);
                             drawChessGame($match[$matchStatus]);
                         } else {
                             $matchStatus++;
+                            scoreMarker($match[$matchStatus]);
                             drawChessGame($match[$matchStatus]);
                         }
                         break;
                     case 4:
                         $matchStatus = count($match) -1;
+                        scoreMarker($match[$matchStatus]);
                         drawChessGame($match[$matchStatus]);
                         break;
                     default:
+                        scoreMarker($match[0]);
                         drawChessGame($match[0]);
                         break;
                 }
             } else if($match[0] != false){
                 $matchStatus = 0;
+                scoreMarker($match[0]);
                 drawChessGame($match[0]);
             } else {
                 $matchStatus = 0;
@@ -110,6 +118,9 @@
                 </div>";
 
         } else {
+            // Se recibe el estado del tablero.
+            $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
+
             // Datos conseguidos de new_gameView.php.
             $title = $_POST['name_title'];
             $white = $_POST['id_player1'];
@@ -127,15 +138,26 @@
             $playersBL = new PlayersBL();
             $playersData = $playersBL->obtainPlayerData();
             drawMatchInfo($title,getPlayerName($white,$playersData),getPlayerName($black,$playersData));
-
-            // Se recibe el estado del tablero.
-            $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
-
+            scoreMarker($board);
+                        
             drawChessGame($board);
         }
     ?>
 
     <?php
+        function scoreMarker($board)
+        {
+            require "../Negocio/apiBL.php";
+            $x = new ApiBL();
+            $scoreMarker = $x->boardTest($board);
+            foreach ($scoreMarker as $value) {
+                if(is_string($value))
+                {
+                    echo "<p id='marker'>".$value."</p>";
+                }
+            }
+        }
+
         function getPlayerName($id,$playersData)
         {
             foreach($playersData as $player)

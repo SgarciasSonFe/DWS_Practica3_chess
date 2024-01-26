@@ -1,8 +1,15 @@
 public class BoardScore
 {
-    private int _scoreBlack;
-    private int _scoreWhite;
-    private string _message;
+    public int _scoreBlack { get;set;}
+    public int _scoreWhite { get;set;}
+    public string _message { get;set;}
+
+    public BoardScore()
+    {
+        this._scoreBlack = 0;
+        this._scoreWhite = 0;
+        this._message = string.Empty;
+    }
 
     public BoardScore(int scoreBlack, int scoreWhite)
         {

@@ -8,7 +8,12 @@ namespace ChessAPI.Model
 
         public override int GetScore()
         {
-            return -1;
+            return 0;
+        }
+
+        public override MovementType ValidateSpecificRulesForMovement(Movement movement, Piece[,] board)
+        {
+            throw new NotImplementedException();
         }
     }
 }

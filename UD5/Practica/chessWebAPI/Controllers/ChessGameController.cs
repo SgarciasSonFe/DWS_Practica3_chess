@@ -24,10 +24,10 @@ public class ChessGameController : ControllerBase
 
             var response = _boardService.GetScore(board);
             return Ok(response);
-        }   
+        }
         catch (Exception ex)
         {
             return StatusCode(StatusCodes.Status500InternalServerError);
-        }     
+        }
     }
 }

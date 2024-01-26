@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/ChessAPI.csproj": {}
+    "/home/carlos/Escritorio/chessPieces/chessPieces.csproj": {}
   },
   "projects": {
-    "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/ChessAPI.csproj": {
+    "/home/carlos/Escritorio/chessPieces/chessPieces.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/ChessAPI.csproj",
-        "projectName": "ChessAPI",
-        "projectPath": "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/ChessAPI.csproj",
-        "packagesPath": "/home/horabaixa/.nuget/packages/",
-        "outputPath": "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/obj/",
+        "projectUniqueName": "/home/carlos/Escritorio/chessPieces/chessPieces.csproj",
+        "projectName": "chessPieces",
+        "projectPath": "/home/carlos/Escritorio/chessPieces/chessPieces.csproj",
+        "packagesPath": "/home/carlos/.nuget/packages/",
+        "outputPath": "/home/carlos/Escritorio/chessPieces/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/horabaixa/.nuget/NuGet/NuGet.Config"
+          "/home/carlos/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -37,12 +37,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.5.0, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",
@@ -54,14 +48,11 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.122/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.126/RuntimeIdentifierGraph.json"
         }
       }
     }
