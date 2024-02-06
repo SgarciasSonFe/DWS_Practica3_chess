@@ -7,7 +7,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Inyección de dependencias: añadir cada Interfaz para que la use el API.
 builder.Services.AddScoped<IBoardService, BoardService>();
+builder.Services.AddScoped<IMovementService, MovementService>();
 
 var app = builder.Build();
 

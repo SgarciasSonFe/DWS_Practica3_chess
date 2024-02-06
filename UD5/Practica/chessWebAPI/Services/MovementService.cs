@@ -4,13 +4,21 @@ public class MovementService : IMovementService
 {
     public MovementResult  GetMovement(string board, Movement movement)
     {
-        
-        if(movement.IsValid())
+        try
         {
-            MovementResult m = new MovementResult(board,true,"OK");
-            
+            if(movement.IsValid())
+            {
+                Board b = new Board(board);
+                
+                return b.GetMovementResult(movement);
+            } else {
+                return new MovementResult(board,false,"OK");
+            }
         }
-
-        return m;
+        catch (System.Exception)
+        {
+            return new MovementResult(board,false,"ERROR");
+        }
+        
     }
 }

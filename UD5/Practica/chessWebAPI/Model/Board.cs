@@ -66,7 +66,29 @@ namespace ChessAPI.Model
             }
         } 
 
-        //Método que devuelve el objeto requerido en la práctica 
+        public string ConvertBoardLine()
+        {
+            string board = "";
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    if(_boardPieces[i, j] != null)
+                    {
+                        board += _boardPieces[i, j].GetCode();
+                    } else {
+                        board += "X";
+                    }
+                    if(i != 7 || j != 7)
+                    {
+                        board += ",";
+                    }
+                }
+            }
+            return board;
+        }
+
+        //Método que devuelve el objeto BoardScore 
         public BoardScore GetScore()
         {
             int scoreBlack = 0;
@@ -94,6 +116,20 @@ namespace ChessAPI.Model
         public Piece GetPiece(int row, int column)
         {
             return _boardPieces[row, column];
+        }
+
+        // Método que devuelve el objeto MovementResult con el board modificado, si es que se puede mover la pieza.
+        public MovementResult GetMovementResult(Movement movement)
+        {
+            if(_boardPieces[movement.fromRow,movement.fromColumn].Validate(movement, _boardPieces) != Piece.MovementType.InvalidNormalMovement)
+            {
+                _boardPieces[movement.toRow,movement.toColumn] = _boardPieces[movement.fromRow,movement.fromColumn];
+                _boardPieces[movement.fromRow,movement.fromColumn] = null;
+
+                return new MovementResult(ConvertBoardLine(),true,"OK");
+            } else {
+                return new MovementResult(ConvertBoardLine(),false,"OK");
+            }
         }
     }
 }

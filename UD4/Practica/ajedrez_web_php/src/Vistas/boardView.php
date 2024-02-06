@@ -126,29 +126,74 @@
             $white = $_POST['id_player1'];
             $black = $_POST['id_player2'];
         
-            echo "<title>".$title."</title>";
-
             // Se insertan los datos de la partida en la base de datos.
             require "../Negocio/matchesBL.php";
             $matches = new MatchesBL();
             $matches->insertMatchData($title,$white,$black);
         
             // Se pintan los datos generales de la partida.
+            echo "<title>".$title."</title>";
+
             require("../Negocio/playersBL.php");
             $playersBL = new PlayersBL();
             $playersData = $playersBL->obtainPlayerData();
             drawMatchInfo($title,getPlayerName($white,$playersData),getPlayerName($black,$playersData));
             scoreMarker($board);
-                        
-            drawChessGame($board);
+
+            echo "<form action='boardView.php' method='POST'>
+                    <h2>Movimiento de piezas</h2>
+                    Origen: 
+                    <label for='fromRow'>Fila: </label>
+                    <input class='txt' id='fromRow' name='fromRow' type='text'>
+                    <label for='fromColumn'>Columna: </label>
+                    <input class='txt' id='fromColumn' name='fromColumn' type='text'><br>
+                    Destino: 
+                    <label for='toRow'>Fila: </label>
+                    <input class='txt' id='toRow' name='toRow' type='text'>
+                    <label for='toColumn'>Columna: </label>
+                    <input class='txt' id='toColumn' name='toColumn' type='text'><br>
+                    <input type='submit' value='Mover' class='move'>
+                </form>";
+            if($_GET['fromColumn'] != false)
+            {
+                drawChessGame(movement($board, $_GET['fromColumn'], $_GET['fromRow'], $_GET['toColumn'], $_GET['toRow']));
+            } else {
+                drawChessGame($board);
+            }
         }
     ?>
 
     <?php
+        function movement($board, $fromColumn, $fromRow, $toColumn, $toRow)
+        {
+            require "../Negocio/apiMovementBL.php";
+            $x = new ApiMovementBL();
+            $movement = $x->movementTest($board, $fromColumn, $fromRow, $toColumn, $toRow);
+
+            $i=0;
+            foreach ($movement as $value) {
+                switch ($i) {
+                    case 0:
+                        $movedBoard = $value;
+                        break;
+                    case 1:
+                        $moveValid = $value;
+                        break;
+                }
+                $i++;
+            }
+            if($moveValid)
+            {
+                return $movedBoard;
+            } else {
+                echo "<p id='error'>Movimiento erroneo</p>";
+                return $board;
+            }
+        }
         function scoreMarker($board)
         {
-            require "../Negocio/apiBL.php";
-            $x = new ApiBL();
+            require "../Negocio/apiScoreBL.php";
+            $x = new ApiScoreBL();
             $scoreMarker = $x->boardTest($board);
             foreach ($scoreMarker as $value) {
                 if(is_string($value))

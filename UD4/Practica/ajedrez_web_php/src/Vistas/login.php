@@ -39,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"]=="POST")
         <label for = "name"> Contraseña: </label>
         <input id = "passw" name = "passw" type = "password" minlength="8">
         <br>
-        <input type = "submit">
+        <input type = "submit" value="Log in">
     </form>
 
     <div class='error'>
     <?php
         if (isset($error))
         {
-            print("El usuario ".$_POST['name']." no tiene acceso");
+            print("<h3>El usuario ".$_POST['name']." no tiene acceso</h3>");
         }
     ?>
     </div>

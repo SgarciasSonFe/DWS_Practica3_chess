@@ -426,11 +426,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/horabaixa/Documents/DWS_Practica3_chess/UD5/Practica/chessWebAPI/ChessAPI.csproj",
+      "projectUniqueName": "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/ChessAPI.csproj",
       "projectName": "ChessAPI",
-      "projectPath": "/home/horabaixa/Documents/DWS_Practica3_chess/UD5/Practica/chessWebAPI/ChessAPI.csproj",
+      "projectPath": "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/ChessAPI.csproj",
       "packagesPath": "/home/horabaixa/.nuget/packages/",
-      "outputPath": "/home/horabaixa/Documents/DWS_Practica3_chess/UD5/Practica/chessWebAPI/obj/",
+      "outputPath": "/var/www/html/aaAjedrez/UD5/Practica/chessWebAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/horabaixa/.nuget/NuGet/NuGet.Config"

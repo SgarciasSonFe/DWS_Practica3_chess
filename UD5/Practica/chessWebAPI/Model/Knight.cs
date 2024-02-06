@@ -13,7 +13,7 @@ namespace ChessAPI.Model
 
         public override MovementType ValidateSpecificRulesForMovement(Movement movement, Piece[,] board)
         {
-            throw new NotImplementedException();
+            return MovementType.ValidNormalMovement;
         }
     }
 }
