@@ -7,14 +7,14 @@ require("./Infraestructura/playersDAL.php");
 function test_alta_usuario()
 {
     $u = new PlayersDAL();
-    return $u->insert('luis','premium','lui@mail.com','11111111');
+    return $u->insert('Carlos','premium','carlo@gmail.com','12345678');
 }
 
 function test_verificar_usuario_encontrado()
 {
     $perfil_esperado = 'premium';
     $u = new PlayersDAL();
-    $perfil = $u->verify('luis','11111111');
+    $perfil = $u->verify('Carlos','12345678');
     return $perfil === $perfil_esperado;
 }
 

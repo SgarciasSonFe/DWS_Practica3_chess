@@ -117,8 +117,55 @@
             echo "<a href='boardView.php?matchId=$matchId&title=$title&whiteName=$whiteName&blackName=$blackName&matchStatus=$matchStatus&btn=4'><div class='button'><img class='btn_img' src='../../img/icons/fin.png'></div></a>
                 </div>";
 
+
+        } else if($_POST['fromColumn'] != null)
+        {
+            require("../Negocio/matchesBL.php");
+            $matchesBL = new MatchesBL();
+            $matchesData = $matchesBL->obtainMatchData();
+            $matchData = end($matchesData); // Recojo solo los datos de la ultima partida porque es la última que ha sido creada y la que está en uso actualmente.
+
+            require("../Negocio/playersBL.php");
+            $playersBL = new PlayersBL();
+            $playersData = $playersBL->obtainPlayerData();
+
+            require "../Negocio/boardStatusBL.php";
+            $boardStatus = new BoardStatusBL();
+            $boardStatusList = $boardStatus->obtainBoardStatus($matchData->getID());
+            $lastBoard = end($boardStatusList); 
+
+            // Se recoge el board con el movimiento ya realizado.
+            $board = movement($lastBoard->getBoard(), $_POST['fromColumn'], $_POST['fromRow'], $_POST['toColumn'], $_POST['toRow']);
+            
+            drawMatchInfo($matchData->getTitle(),getPlayerName($matchData->getWhite(),$playersData),getPlayerName($matchData->getBlack(),$playersData));
+            scoreMarker($board);
+
+            echo "<form action='boardView.php' method='POST'>
+                    <h2>Movimiento de piezas</h2>
+                    Origen: 
+                    <label for='fromRow'>Fila: </label>
+                    <input class='num' id='fromRow' name='fromRow' type='number'>
+                    <label for='fromColumn'>Columna: </label>
+                    <input class='num' id='fromColumn' name='fromColumn' type='number'><br>
+                    Destino: 
+                    <label for='toRow'>Fila: </label>
+                    <input class='num' id='toRow' name='toRow' type='number'>
+                    <label for='toColumn'>Columna: </label>
+                    <input class='num' id='toColumn' name='toColumn' type='number'><br>
+                    <input type='submit' value='Mover' class='move'>
+                </form>";
+            
+            drawChessGame($board);
+
+            // Se inserta el tablero en la base de datos.
+            $matches = $matchesBL->obtainMatchData();
+            $matchData = end($matches);
+            require "../Negocio/boardStatusBL.php";
+            $boardStatusBL = new BoardStatusBL();
+            $boardStatusBL->insertBoardStatus($board, $matchData->getID());
+            
         } else {
-            // Se recibe el estado del tablero.
+            // Se pone el estado inicial del tablero.
             $board = "RoB,KnB,BiB,QuB,KiB,BiB,KnB,RoB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,PaB,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,PaW,PaW,PaW,PaW,PaW,PaW,PaW,PaW,RoW,KnW,BiW,QuW,KiW,BiW,KnW,RoW";
 
             // Datos conseguidos de new_gameView.php.
@@ -128,8 +175,8 @@
         
             // Se insertan los datos de la partida en la base de datos.
             require "../Negocio/matchesBL.php";
-            $matches = new MatchesBL();
-            $matches->insertMatchData($title,$white,$black);
+            $matchesBL = new MatchesBL();
+            $matchesBL->insertMatchData($title,$white,$black);
         
             // Se pintan los datos generales de la partida.
             echo "<title>".$title."</title>";
@@ -144,22 +191,26 @@
                     <h2>Movimiento de piezas</h2>
                     Origen: 
                     <label for='fromRow'>Fila: </label>
-                    <input class='txt' id='fromRow' name='fromRow' type='text'>
+                    <input class='num' id='fromRow' name='fromRow' type='number'>
                     <label for='fromColumn'>Columna: </label>
-                    <input class='txt' id='fromColumn' name='fromColumn' type='text'><br>
+                    <input class='num' id='fromColumn' name='fromColumn' type='number'><br>
                     Destino: 
                     <label for='toRow'>Fila: </label>
-                    <input class='txt' id='toRow' name='toRow' type='text'>
+                    <input class='num' id='toRow' name='toRow' type='number'>
                     <label for='toColumn'>Columna: </label>
-                    <input class='txt' id='toColumn' name='toColumn' type='text'><br>
+                    <input class='num' id='toColumn' name='toColumn' type='number'><br>
                     <input type='submit' value='Mover' class='move'>
                 </form>";
-            if($_GET['fromColumn'] != false)
-            {
-                drawChessGame(movement($board, $_GET['fromColumn'], $_GET['fromRow'], $_GET['toColumn'], $_GET['toRow']));
-            } else {
-                drawChessGame($board);
-            }
+            
+            drawChessGame($board);
+            
+            // Se inserta el tablero en la base de datos.
+            $matches = $matchesBL->obtainMatchData();
+            $matchData = end($matches);
+            require "../Negocio/boardStatusBL.php";
+            $boardStatusBL = new BoardStatusBL();
+            var_dump($board);
+            $boardStatusBL->insertBoardStatus($board, $matchData->getID());
         }
     ?>
 
@@ -168,8 +219,8 @@
         {
             require "../Negocio/apiMovementBL.php";
             $x = new ApiMovementBL();
-            $movement = $x->movementTest($board, $fromColumn, $fromRow, $toColumn, $toRow);
-
+            $movement = $x->movementTest($board, intval($fromColumn), intval($fromRow), intval($toColumn), intval($toRow));
+            
             $i=0;
             foreach ($movement as $value) {
                 switch ($i) {

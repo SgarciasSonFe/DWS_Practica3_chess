@@ -30,5 +30,18 @@ class BoardStatusDAL
         }
 		return $BoardStatus;
     }
+
+    function insertBoardStatus($board, $idMatch)
+    {
+        $connection = mysqli_connect('localhost','root','1234');
+        if(mysqli_connect_errno())
+        {
+            echo "Error al conectar a MySQL: ". mysqli_connect_error();
+        }
+        mysqli_select_db($connection, 'chess_game');
+
+        $insert = mysqli_prepare($connection, "insert into T_Board_Status (IDGame,board) values ((select ID from T_Matches where ID = ".$idMatch."),".$board.");");
+        $insert->execute();
+    }
 }
 ?>
