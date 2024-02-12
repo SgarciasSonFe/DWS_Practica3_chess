@@ -40,7 +40,7 @@ class BoardStatusDAL
         }
         mysqli_select_db($connection, 'chess_game');
 
-        $insert = mysqli_prepare($connection, "insert into T_Board_Status (IDGame,board) values ((select ID from T_Matches where ID = ".$idMatch."),".$board.");");
+        $insert = mysqli_prepare($connection, "insert into T_Board_Status (IDGame,board) values ((select ID from T_Matches where ID = ".$idMatch."),'".$board."');");
         $insert->execute();
     }
 }

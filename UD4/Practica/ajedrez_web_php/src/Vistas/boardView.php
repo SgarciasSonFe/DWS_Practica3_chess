@@ -158,11 +158,7 @@
             drawChessGame($board);
 
             // Se inserta el tablero en la base de datos.
-            $matches = $matchesBL->obtainMatchData();
-            $matchData = end($matches);
-            require "../Negocio/boardStatusBL.php";
-            $boardStatusBL = new BoardStatusBL();
-            $boardStatusBL->insertBoardStatus($board, $matchData->getID());
+            $boardStatus->insertBoardStatus($board, $matchData->getID());
             
         } else {
             // Se pone el estado inicial del tablero.
@@ -215,11 +211,11 @@
     ?>
 
     <?php
-        function movement($board, $fromColumn, $fromRow, $toColumn, $toRow)
+        function movement($boar, $fromColumn, $fromRow, $toColumn, $toRow)
         {
             require "../Negocio/apiMovementBL.php";
             $x = new ApiMovementBL();
-            $movement = $x->movementTest($board, intval($fromColumn), intval($fromRow), intval($toColumn), intval($toRow));
+            $movement = $x->movementTest($boar, intval($fromColumn), intval($fromRow), intval($toColumn), intval($toRow));
             
             $i=0;
             foreach ($movement as $value) {
@@ -238,7 +234,7 @@
                 return $movedBoard;
             } else {
                 echo "<p id='error'>Movimiento erroneo</p>";
-                return $board;
+                return $boar;
             }
         }
         function scoreMarker($board)
