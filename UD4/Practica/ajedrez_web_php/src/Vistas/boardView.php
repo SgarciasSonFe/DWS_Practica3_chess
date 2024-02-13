@@ -205,7 +205,6 @@
             $matchData = end($matches);
             require "../Negocio/boardStatusBL.php";
             $boardStatusBL = new BoardStatusBL();
-            var_dump($board);
             $boardStatusBL->insertBoardStatus($board, $matchData->getID());
         }
     ?>
